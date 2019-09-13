@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",
-    "start": "npm run clear-build && ./node_modules/.bin/webpack --watch",
-    "build": "npm run clear-build && ./node_modules/.bin/webpack",
+    "start": "npm run clear-build && webpack --watch --env=dev",
+    "build": "npm run clear-build && webpack --env=prod",
     "publish": "npm run build && GOOGLE_APPLICATION_CREDENTIALS=\"secret.json\" node publish.js",
     "clear-build": "rm -rf build/**",
     "deploy": "./deploy.sh"
