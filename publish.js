@@ -9,7 +9,7 @@ const stringify = require('json-stringify-safe');
 
 const firebaseServiceAccount = require('./secret.json');
 
-const FIREBASE_ROOT = '/sites-new/';
+const FIREBASE_ROOT = '/sites/indexer';
 const BUILD_DIR = path.join(__dirname, 'build');
 const BUCKET = 'scvo-assets';
 const DESTINATION_DIR = 'test3/indexer';
@@ -108,7 +108,7 @@ async function getUploadOptions() {
 async function uploadConfigs() {
   console.log('Uploading site configuration');
 
-  const firebasePath = FIREBASE_ROOT + 'indexer';
+  const firebasePath = FIREBASE_ROOT;
   const configPath = path.join(BUILD_DIR, 'config.json');
 
   try {
