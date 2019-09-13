@@ -13,7 +13,7 @@ module.exports = (env) => {
     ], { debug: 'warning' }),
     new JsonIncWebpackPlugin({
       pattern: './configuration/config.inc.json',
-      output: './build/config.json'
+      output: './build'
     }),
   ];
 

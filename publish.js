@@ -72,7 +72,7 @@ async function uploadAssets() {
 async function getUploadOptions() {
   const uploadOptions = [];
 
-  console.log('Preparing all assets for upload (including checking if they need rehosting');
+  console.log('Preparing all assets for upload');
 
   const configPath = path.join(BUILD_DIR, 'config.json');
   const assetsGlob = path.join(BUILD_DIR, '**/*');
@@ -80,7 +80,7 @@ async function getUploadOptions() {
 
   for (const asset of assets) {
     try {
-      const destination = path.join(DESTINATION_DIR, site, asset.split(BUILD_DIR)[1]);
+      const destination = path.join(DESTINATION_DIR, asset.split(BUILD_DIR)[1]);
       const contentType = mime.lookup(asset) || 'text/plain';
       const gzipped = isGzip(fs.readFileSync(asset));
 

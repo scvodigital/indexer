@@ -35,7 +35,7 @@
     }
   ],
   "metaData": {
-    "assetsVersion": "0.0.2",
+    "assetsVersion": "0.0.3",
     "assetsBase": "https://storage.googleapis.com/scvo-assets/test/scvo/",
     "handlebars": {
       "partials": {
