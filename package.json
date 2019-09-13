@@ -1,6 +1,6 @@
 {
   "name": "@scvo/indexer",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Site configuration and assets for indexer.scvo.org",
   "main": "index.js",
   "scripts": {
