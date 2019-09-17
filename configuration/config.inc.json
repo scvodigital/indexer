@@ -7,7 +7,7 @@
   ],
   "metaData": {
     "assetsVersion": "{:../package.json@version}",
-    "assetsBase": "https://storage.googleapis.com/scvo-assets/test/scvo/",
+    "assetsBase": "https://storage.googleapis.com/scvo-assets/test/indexer/",
     "handlebars": {
       "partials": {
         "{$./partials/**/*.*}": "includeRelativePath=false"
@@ -22,6 +22,7 @@
         "{$./queries/**/*.*}": ""
       }
     },
-    "commonTasks": "{:./data/common-tasks.json}"
+    "commonTasks": "{:./data/common-tasks.json}",
+    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}"
   }
 }

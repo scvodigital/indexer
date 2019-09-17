@@ -35,10 +35,11 @@
     }
   ],
   "metaData": {
-    "assetsVersion": "0.0.5",
-    "assetsBase": "https://storage.googleapis.com/scvo-assets/test/scvo/",
+    "assetsVersion": "0.0.1",
+    "assetsBase": "https://storage.googleapis.com/scvo-assets/test/indexer/",
     "handlebars": {
       "partials": {
+        "asset-url": "{{~#if @root.context.metaData.live~}}\n{{@root.context.metaData.assetsBase}}{{{url}}}?version={{{@root.context.metaData.assetsVersion}}}\n{{~else~}}\n/assets/{{{url}}}\n{{~/if~}}",
         "block": "{{parse (slugify blockName) context=this path=\"blockName\"}}\n{{#json}}\n  {{{json key=\"blockName\" value=blockName}}},\n\n  {{!-- check to see if we have an attributes override for block type --}}\n  {{#if (get @root.context.metaData.handlebars.partials (concat \"blocks_attributes_\" blockName))}}\n    {{> (concat \"blocks_attributes_\" blockName) this}}\n  {{else}}\n    {{#any attrs}}\n      {{{json key=\"attributes\" value=attrs}}},\n    {{/any}}\n  {{/if}}\n\n  {{!-- we don't want to store `contents` if there are innerBlocks --}}\n  {{#any innerBlocks}}\n    {{#json key=\"innerBlocks\" type=\"array\"}}\n      {{#each innerBlocks}}\n        {{#if blockName}}\n          {{>block this}},\n        {{/if}}\n      {{/each}}\n    {{/json}}\n  {{else}}\n    {{!-- check to see if we have a contents override for block type --}}\n    {{#if (get @root.context.metaData.handlebars.partials (concat \"blocks_contents_\" blockName))}}\n      {{> (concat \"blocks_contents_\"  blockName) this}}\n    {{else}}\n      {{{json key=\"contents\" value=innerHTML}}}\n    {{/if}}\n  {{/any}}\n{{/json}}",
         "blocks_attributes_core-button": "{{#json key=\"attributes\" type=\"object\"}}\n  {{#if attrs.className}}{{{json key=\"className\" value=attrs.className}}},{{/if}}\n  {{#if attrs.align}}{{{json key=\"align\" value=attrs.align}}},{{/if}}\n  {{#if attrs.backgroundColor}}{{{json key=\"backgroundColour\" value=attrs.backgroundColor}}},{{/if}}\n  {{#if attrs.textColor}}{{{json key=\"textColour\" value=attrs.textColor}}},{{/if}}\n  {{#if (itemAt (itemAt (match (trim innerHTML) \"(?:href=\\\")(.*?)(?:\\\")\") 0) 1)}}\n    {{{json key=\"href\" value=(get this \"@input\")}}},\n  {{/if}}\n{{/json}},",
         "blocks_attributes_core-columns": "{{#json key=\"attributes\" type=\"object\"}}\n  {{{json key=\"columns\" value=(count innerBlocks)}}}\n{{/json}},",
@@ -72,6 +73,7 @@
       "layouts": {},
       "queries": {}
     },
-    "commonTasks": {}
+    "commonTasks": {},
+    "elasticsearchUrl": "https://readonly:onlyread@2e6b5fd9344d4f8565e7d015d861b240.europe-west3.gcp.cloud.es.io:9243"
   }
 }
